@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="基于本地法律法规知识库与联网检索的 AI 法律咨询助手" />
+    <title>智律 AI 法律咨询</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3v17M6 6h12M8 6l-4 7h8L8 6Zm8 0-4 7h8l-4-7ZM7 21h10" /></svg>
+          </div>
+          <div><strong>智律</strong><span>AI 法律咨询</span></div>
+        </div>
+
+        <button class="new-chat" id="newChatButton">
+          <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></svg>
+          新建咨询
+        </button>
+
+        <div class="history-heading"><span>历史咨询</span><button id="refreshButton" title="刷新历史记录" aria-label="刷新历史记录"><svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0 2 5M20 4v7h-7" /></svg></button></div>
+        <nav class="history-list" id="historyList" aria-label="历史咨询列表"></nav>
+
+        <div class="sidebar-footer">
+          <div class="status"><i></i><span>本地法规库已连接</span></div>
+          <p>回答仅供参考，不构成正式法律意见。</p>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <button class="icon-button menu-button" id="menuButton" aria-label="打开历史记录"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" /></svg></button>
+          <div class="conversation-title"><strong id="conversationTitle">新咨询</strong><span>本地法规检索 · 联网案例搜索</span></div>
+          <div class="model-badge"><span></span>AI 服务在线</div>
+        </header>
+
+        <section class="conversation" id="conversation" aria-live="polite">
+          <div class="welcome" id="welcome">
+            <div class="welcome-icon"><svg viewBox="0 0 24 24"><path d="M12 3v17M6 6h12M8 6l-4 7h8L8 6Zm8 0-4 7h8l-4-7ZM7 21h10" /></svg></div>
+            <p class="eyebrow">智能法律信息助手</p>
+            <h1>你好，有什么法律问题<br />需要一起梳理？</h1>
+            <p class="welcome-copy">我会结合本地法律法规与公开案例资料，帮你分析问题、整理依据和下一步行动建议。</p>
+            <div class="suggestions" id="suggestions">
+              <button data-question="公司拖欠工资，我应该如何维权？"><span>劳动纠纷</span>公司拖欠工资，我应该如何维权？</button>
+              <button data-question="发生交通事故后，责任通常如何划分？"><span>交通事故</span>发生交通事故后，责任通常如何划分？</button>
+              <button data-question="网购商品存在质量问题，可以要求哪些赔偿？"><span>消费维权</span>网购商品存在质量问题，可以要求哪些赔偿？</button>
+              <button data-question="签订租房合同时有哪些条款需要特别注意？"><span>合同审查</span>签订租房合同时有哪些条款需要特别注意？</button>
+            </div>
+          </div>
+          <div class="messages" id="messages"></div>
+        </section>
+
+        <footer class="composer-wrap">
+          <form class="composer" id="composer">
+            <textarea id="questionInput" rows="1" maxlength="8000" placeholder="请描述你的法律问题，提供时间、地点和关键事实会更准确……"></textarea>
+            <div class="composer-actions">
+              <span>Enter 发送 · Shift + Enter 换行</span>
+              <button class="send-button" id="sendButton" type="submit" aria-label="发送问题"><svg viewBox="0 0 24 24"><path d="m5 12 14-7-4 14-3-6-7-1Z" /><path d="m12 13 7-8" /></svg></button>
+              <button class="stop-button hidden" id="stopButton" type="button" aria-label="停止生成"><svg viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="1" /></svg></button>
+            </div>
+          </form>
+          <p class="legal-note">智律可能产生不准确的信息，涉及重大权益时请咨询执业律师。</p>
+        </footer>
+      </main>
+    </div>
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+    <div class="toast" id="toast" role="status"></div>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="/static/app.js"></script>
+  </body>
+</html>

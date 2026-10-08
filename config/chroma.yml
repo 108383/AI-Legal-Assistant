@@ -1,0 +1,10 @@
+collection_name: agent  #向量存储的表名
+persist_directory: chroma_db  #向量存储的目录
+k: 4  #相似度匹配的TopK
+data_path: data  #数据存储的目录
+md5_hex_store: md5.text  #MD5存储文件
+allow_knowledge_file_type: ["txt","pdf"]  #允许加载的知识文件类型
+
+chunk_size: 200  #分块大小
+chunk_overlap: 20  #分块重叠
+separators: ["\n\n","\n",".","!","?","。","！","？"," ",""]
