@@ -15,6 +15,10 @@ from fastapi.responses import FileResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
+from dotenv import load_dotenv
+
+load_dotenv(Path(__file__).resolve().parent / ".env")
+
 from utils.chat_manager import ChatManager
 
 
